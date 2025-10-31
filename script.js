@@ -1,0 +1,34 @@
+const scriptURL = 'https://script.google.com/macros/s/AKfycbyteQs93NOoP_gIdR4aEqgk_3-n_6B4iJ0ZdQPDBAoe5zBwKTqNPn6OwHWfnuBE23Zfbg/exec'
+const form = document.getElementById('submitForm'); // replace with your form ID
+
+
+form.addEventListener('submit', async e => {
+    e.preventDefault();
+
+    // Show loading spinner or indicator
+    // You can implement this part based on your HTML structure
+
+    try {
+        const response = await fetch(scriptURL, {
+            method: 'POST',
+            body: new FormData(form),
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        // Successful submission
+        alert("Thank you! Your form is submitted successfully.");
+
+        // Reload the page after the alert is shown
+        await new Promise(resolve => setTimeout(resolve, 500)); // Wait for 0.5 seconds (adjust as needed)
+        window.location.reload();
+    } catch (error) {
+        console.error('Error!', error.message);
+
+        
+    }
+});
+
+
