@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>New Admission Form</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f5f7fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .admission-form {
+    background: #fff;
+    padding: 25px 35px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    width: 350px;
+  }
+
+  .admission-form h2 {
+    text-align: center;
+    color: #007bff;
+    margin-bottom: 20px;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  input {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+
+  button {
+    width: 100%;
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  button:hover {
+    background: #0056b3;
+  }
+</style>
+</head>
+<body>
+
+  <form class="admission-form">
+    <h2>Admission Form</h2>
+
+    <div class="form-group">
+      <label for="name">Student Name</label>
+      <input type="text" id="name" placeholder="Enter student name" required>
+    </div>
+
+    <div class="form-group">
+      <label for="fatherName">Father's Name</label>
+      <input type="text" id="fatherName" placeholder="Enter father's name" required>
+    </div>
+
+    <div class="form-group">
+      <label for="date">Date of Admission</label>
+      <input type="date" id="date" required>
+    </div>
+
+    <div class="form-group">
+      <label for="admissionFees">Admission Fees</label>
+      <input type="number" id="admissionFees" placeholder="Enter admission fees" required>
+    </div>
+
+    <div class="form-group">
+      <label for="totalFees">Total Fees</label>
+      <input type="number" id="totalFees" placeholder="Enter total fees" required>
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" placeholder="Enter phone number" required>
+    </div>
+
+    <button type="submit">Submit</button>
+  </form>
+
+</body>
+</html>

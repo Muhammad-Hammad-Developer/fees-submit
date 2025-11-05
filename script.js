@@ -1,4 +1,4 @@
-const scriptURL = 'https://script.google.com/macros/s/AKfycbyteQs93NOoP_gIdR4aEqgk_3-n_6B4iJ0ZdQPDBAoe5zBwKTqNPn6OwHWfnuBE23Zfbg/exec'
+const scriptURL = 'https://script.google.com/macros/s/AKfycbyw07AS3fgyFKe78yxMxUn6ADgC_XAl4eMzuIwSNbh3YtmIMZCy3FB_Jonp1_0qsoUM/exec'
 const form = document.getElementById('submitForm'); // replace with your form ID
 
 
