@@ -1,34 +1,49 @@
-const scriptURL = 'https://script.google.com/macros/s/AKfycbyw07AS3fgyFKe78yxMxUn6ADgC_XAl4eMzuIwSNbh3YtmIMZCy3FB_Jonp1_0qsoUM/exec'
-const form = document.getElementById('submitForm'); // replace with your form ID
+const scriptURL = 'https://script.google.com/macros/s/AKfycbyw07AS3fgyFKe78yxMxUn6ADgC_XAl4eMzuIwSNbh3YtmIMZCy3FB_Jonp1_0qsoUM/exec';
+const form = document.getElementById('submitForm');
+const submitBtn = document.querySelector('#submitForm button[type="submit"]');
 
+// Create overlay box
+const overlay = document.createElement('div');
+overlay.id = 'overlay';
+overlay.innerHTML = `<div id="overlayBox">⏳ Please wait 4 seconds...<br>Your data will be submitted automatically.</div>`;
+document.body.appendChild(overlay);
 
-form.addEventListener('submit', async e => {
-    e.preventDefault();
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
 
-    // Show loading spinner or indicator
-    // You can implement this part based on your HTML structure
+  // Disable button and show overlay
+  submitBtn.disabled = true;
+  form.classList.add('blurred');
+  overlay.style.display = 'flex';
 
-    try {
-        const response = await fetch(scriptURL, {
-            method: 'POST',
-            body: new FormData(form),
-        });
+  // Wait 4 seconds
+  await new Promise(resolve => setTimeout(resolve, 4000));
 
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
+  try {
+    const response = await fetch(scriptURL, {
+      method: 'POST',
+      body: new FormData(form),
+    });
 
-        // Successful submission
-        alert("Thank you! Your form is submitted successfully.");
+    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
 
-        // Reload the page after the alert is shown
-        await new Promise(resolve => setTimeout(resolve, 500)); // Wait for 0.5 seconds (adjust as needed)
-        window.location.reload();
-    } catch (error) {
-        console.error('Error!', error.message);
+    // Show success message
+    document.getElementById('overlayBox').innerHTML = "✅ Thank you! Your form has been submitted successfully.";
 
-        
-    }
+    // Wait 1.5 seconds, then reset everything
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    form.reset();
+    overlay.style.display = 'none';
+    form.classList.remove('blurred');
+    submitBtn.disabled = false;
+
+  } catch (error) {
+    console.error('Error!', error.message);
+    document.getElementById('overlayBox').innerHTML = "❌ Something went wrong. Please try again.";
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    overlay.style.display = 'none';
+    form.classList.remove('blurred');
+    submitBtn.disabled = false;
+  }
 });
-
-
+ 
