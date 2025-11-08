@@ -1,4 +1,4 @@
-const scriptURL = 'https://script.google.com/macros/s/AKfycbyYfnA6iArcyCSx4GiTGcgpnSononekjhOFddbFZTJr-aKpT0AO8sKR-DEknsF2avXh/exec';
+const scriptURL = 'https://script.google.com/macros/s/AKfycby6WA0ject52EbaexQw5w_SGJCVsIjmTehuQzYiEmPmNburyCGPq8BpjhimnzBKS-XZ/exec';
 const form = document.getElementById('submitForm');
 const submitBtn = document.querySelector('#submitForm button[type="submit"]');
 
