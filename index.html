@@ -3,109 +3,122 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login Form</title>
+  <title>Responsive Submit Form</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
       margin: 0;
-      background-color: #f0f0f0;
-    }
-
-    .login-container {
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      width: 300px;
-      text-align: center;
-      animation: fadeIn 1s ease-in-out;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    h2 {
+      font-family: Arial, sans-serif;
+      background: #f5f7fa;
       color: #333;
     }
 
-    form {
+    header {
       display: flex;
-      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      background: #fff;
+      padding: 10px 30px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
 
-    label {
-      margin: 10px 0;
+    header h1 {
+      font-size: 28px;
       font-weight: bold;
+      color: #1b1b1b;
+      text-align: center;
+      flex: 1;
     }
 
-    input {
-      padding: 10px;
+    .menu-toggle {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    /* ---- Main Container ---- */
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-top: 50px;
+      padding: 20px;
+    }
+
+    /* ---- Box Design ---- */
+    .box {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 350px;
+      padding: 30px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+    }
+
+    .box h2 {
+      color: #0a4275;
       margin-bottom: 15px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
     }
 
-    button {
-      background-color: #4caf50;
-      color: #fff;
-      padding: 10px;
+    .btn {
+      background-color: #0a4275;
+      color: white;
       border: none;
-      border-radius: 4px;
+      padding: 10px 20px;
+      border-radius: 8px;
       cursor: pointer;
       font-size: 16px;
-      transition: background-color 0.3s;
+      transition: 0.3s;
     }
 
-    button:hover {
-      background-color: #45a049;
+    .btn:hover {
+      background-color: #072e52;
     }
 
-    .error-message {
-      color: #ff0000;
-      margin-top: -10px;
-      margin-bottom: 10px;
-      font-size: 14px;
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+      }
+      header h1 {
+        font-size: 22px;
+      }
+      .container {
+        flex-direction: column;
+      }
     }
   </style>
 </head>
 <body>
+  <header>
+   
+    <h1>AUJ FEES MANAGMENT SYSTEM</h1>
+    <div class="menu-toggle" id="mobile-menu">&#9776;</div>
+  </header>
 
-<div class="login-container">
-  <h2>Login</h2>
-  <form id="loginForm">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" placeholder="Enter your username">
+  <div class="container">
+    <div class="box">
+      <h2>School Fees System Form</h2>
+      <p>Manage and record school fee details here.</p>
+     <a href="school.html"><button class="btn">Open Form</button></a> 
+    </div>
 
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" placeholder="Enter your password">
+    <div class="box">
+      <h2>Computer System Form</h2>
+      <p>Fill in details for computer course enrollments.</p>
+     <a href="index.html"> <button class="btn">Open Form</button></a>
+    </div>
+  </div>
 
-    <button type="button" onclick="validateForm()">Login</button>
-
-    <p class="error-message" id="errorMessage"></p>
-  </form>
-</div>
-
-<script>
-   function validateForm(){
-            var name = document.getElementById("username").value;
-            var password = document.getElementById("password").value;
-
-            if(name== "admin" && password== "Raza123"){
-                window.location.assign("login.html");
-                alert("login Successfully");
-            }
-            else{
-                alert("Invalid Name or Password");
-            }
-            return;
-        }
-</script>
-
+ 
 </body>
 </html>
+
+

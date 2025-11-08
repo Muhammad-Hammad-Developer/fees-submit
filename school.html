@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Responsive FEES Submit Form</title>
+</head>
+<body>
+    <header>
+        <div class="logo"><img src="auj schooling.png" style="margin-left: 20px; " width="180px"  height="100px "></div>
+<h1 style="color: black;" >AUJ SCHOOLING SYSTEM</h2>       
+        <div class="menu-toggle" id="mobile-menu">
+            &#9776;
+        </div>
+        <nav>
+            <!-- <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul> -->
+        </nav>
+    </header>
+
+    <div class="form-container1">
+        <form id="submitForm">
+            <h2 style="text-align: center;">Fees Submit Form</h2>
+            <label for="SNO">Slip Number</label>
+            <input type="number" id="sno" name="SlipNo" required>
+
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="Date" required>
+
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="Name" required>
+
+            <label for="father Name">Father Name:</label>
+            <input type="text" id="fatherName" name="FatherName" required>
+            <h3 id="hello">Classes</h3>
+            <select id="course" name="Course">
+                <option>
+                    Play Group
+                </option>
+                <option>
+                   Mont
+                </option>
+                <option>
+                 Prep 1
+                </option>
+                <option>
+                  Prep 2
+                </option>
+                <option>
+                   1st
+                </option>
+                <option>
+                  2nd
+                 </option>
+                 <option>
+                    3rd
+                 </option>
+                 <option>
+                  4th
+                 </option>
+                 <option>
+                    5th
+                   </option>
+                   <option>
+                    6th
+                   </option>
+                   <option>
+                    7th
+                   </option>
+                   <option>
+                    8th
+                   </option>
+                   <option>
+                   Special class
+                   </option>
+                   <option>
+                  
+            </select>
+
+            <label id="airoplane" for="Admission Fee">Admission Fee:</label>
+            <input type="number" id="AdmissionFee" name="AdmissionFee" >
+
+            <label id="bike" for="Monthly Fee">Monthly Fee:</label>
+            <input type="number" id="MonthlyFee" name="MonthlyFee" required>
+
+            <label id="car" for="Certificate Fee">Course Fee:</label>
+            <input type="number" id="CertificateFee" name="CourseFee " >
+
+            <label id="car2" for="Father/Gardian Phone number">Father/Gardian's Phone number:</label>
+            <input type="number" id="FatherNumber" name="PhoneNumber" >
+
+            <label id="car1" for="Total Fee">Total Fee:</label>
+            <input type="number" id="TotalFee" name="TotalFee" required>
+
+            <!-- <label id="car2" for="Father/Gardian Phone number">Father&Gardian Phone number:</label>
+            <input type="number" id="FatherNumber" name="father&Gardian Phone number" required> -->
+
+            <button type="submit" id="submitButton">Submit</button>
+            </form>
+             <a href="new.html" style="list-style: none; text-decoration: none; color: white; height: 50%  ; width: 25%; border-radius: 10px ; text-align: center; margin-top: 15px; padding-top: 20px; ">  <button>NEW ADMISSION</button></a>
+      
+    </div>
+
+    <script src="script2.js"></script>
+</body>
+</html>
+
