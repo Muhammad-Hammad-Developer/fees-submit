@@ -3,36 +3,71 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Responsive Submit Form</title>
+  <title>AUJ Fees Management System</title>
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f7fa;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: #333;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .background-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
+      z-index: 0;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     header {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      background: #fff;
-      padding: 10px 30px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 25px 30px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 1;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     }
 
     header h1 {
-      font-size: 28px;
-      font-weight: bold;
-      color: #1b1b1b;
+      font-size: 32px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
       text-align: center;
-      flex: 1;
+      letter-spacing: -0.5px;
     }
 
     .menu-toggle {
       display: none;
       font-size: 24px;
       cursor: pointer;
+      color: #667eea;
     }
 
     /* ---- Main Container ---- */
@@ -41,83 +76,247 @@
       justify-content: center;
       align-items: center;
       flex-wrap: wrap;
-      gap: 30px;
-      margin-top: 50px;
-      padding: 20px;
+      gap: 40px;
+      margin-top: 80px;
+      padding: 40px 20px;
+      position: relative;
+      z-index: 1;
+      min-height: calc(100vh - 150px);
     }
 
     /* ---- Box Design ---- */
     .box {
-      background: white;
-      border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      width: 350px;
-      padding: 30px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      width: 100%;
+      max-width: 400px;
+      padding: 40px;
       text-align: center;
-      transition: all 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      position: relative;
+      overflow: hidden;
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    .box:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+
+    .box:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.5s;
+    }
+
+    .box:hover::before {
+      left: 100%;
     }
 
     .box:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+    }
+
+    .box-icon {
+      font-size: 64px;
+      margin-bottom: 20px;
+      display: block;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .box:nth-child(1) .box-icon {
+      animation-delay: 0s;
+    }
+
+    .box:nth-child(2) .box-icon {
+      animation-delay: 0.5s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
     }
 
     .box h2 {
-      color: #0a4275;
+      color: #333;
       margin-bottom: 15px;
+      font-size: 24px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .box p {
+      color: #666;
+      margin-bottom: 30px;
+      font-size: 15px;
+      line-height: 1.6;
     }
 
     .btn {
-      background-color: #0a4275;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: white;
       border: none;
-      padding: 10px 20px;
-      border-radius: 8px;
+      padding: 14px 32px;
+      border-radius: 12px;
       cursor: pointer;
       font-size: 16px;
-      transition: 0.3s;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
+    .btn:hover::before {
+      width: 300px;
+      height: 300px;
     }
 
     .btn:hover {
-      background-color: #072e52;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .btn span {
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn-arrow {
+      position: relative;
+      z-index: 1;
+      transition: transform 0.3s ease;
+    }
+
+    .btn:hover .btn-arrow {
+      transform: translateX(5px);
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
     }
 
     @media (max-width: 768px) {
       header {
-        flex-direction: column;
-        text-align: center;
+        padding: 20px;
       }
+
       header h1 {
-        font-size: 22px;
+        font-size: 24px;
       }
+
       .container {
-        flex-direction: column;
+        margin-top: 40px;
+        gap: 30px;
+        padding: 20px;
+      }
+
+      .box {
+        padding: 30px 25px;
+        max-width: 100%;
+      }
+
+      .box-icon {
+        font-size: 48px;
+      }
+
+      .box h2 {
+        font-size: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 20px;
+      }
+
+      .box {
+        padding: 25px 20px;
       }
     }
   </style>
 </head>
 <body>
+  <div class="background-animation"></div>
+  
   <header>
-   
-    <h1>AUJ FEES MANAGMENT SYSTEM</h1>
+    <h1>AUJ Fees Management System</h1>
     <div class="menu-toggle" id="mobile-menu">&#9776;</div>
   </header>
 
   <div class="container">
     <div class="box">
+      <span class="box-icon">🏫</span>
       <h2>School Fees System Form</h2>
-      <p>Manage and record school fee details here.</p>
-     <a href="school.html"><button class="btn">Open Form</button></a> 
+      <p>Manage and record school fee details efficiently with our comprehensive form system.</p>
+      <a href="school.html">
+        <button class="btn">
+          <span>Open Form</span>
+          <span class="btn-arrow">→</span>
+        </button>
+      </a>
     </div>
 
     <div class="box">
+      <span class="box-icon">💻</span>
       <h2>Computer System Form</h2>
-      <p>Fill in details for computer course enrollments.</p>
-     <a href="main.html"> <button class="btn">Open Form</button></a>
+      <p>Fill in details for computer course enrollments and fee submissions.</p>
+      <a href="main.html">
+        <button class="btn">
+          <span>Open Form</span>
+          <span class="btn-arrow">→</span>
+        </button>
+      </a>
     </div>
   </div>
-
- 
 </body>
 </html>
 
