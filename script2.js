@@ -19,13 +19,49 @@ form.addEventListener('submit', async (e) => {
   // Wait 4 seconds
   await new Promise(resolve => setTimeout(resolve, 4000));
 
+  // Get form data before submission
+  const formData = new FormData(form);
+
   try {
     const response = await fetch(scriptURL, {
       method: 'POST',
-      body: new FormData(form),
+      body: formData,
     });
 
     if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+
+    // Save fee data to localStorage
+    const feeData = {
+      SlipNo: formData.get('SlipNo'),
+      Date: formData.get('Date'),
+      Name: formData.get('Name'),
+      FatherName: formData.get('FatherName'),
+      Course: formData.get('Course'),
+      AdmissionFee: formData.get('AdmissionFee'),
+      MonthlyFee: formData.get('MonthlyFee'),
+      CourseFee: formData.get('CourseFee'),
+      PhoneNumber: formData.get('PhoneNumber'),
+      TotalFee: formData.get('TotalFee'),
+      timestamp: Date.now(),
+      type: 'school'
+    };
+    
+    // Get existing fees from localStorage
+    let fees = JSON.parse(localStorage.getItem('fees') || '[]');
+    fees.unshift(feeData);
+    
+    // Keep only last 100 fees
+    if (fees.length > 100) {
+      fees = fees.slice(0, 100);
+    }
+    
+    // Save to localStorage
+    try {
+      localStorage.setItem('fees', JSON.stringify(fees));
+      console.log('Fee saved successfully. Total fees:', fees.length);
+    } catch(e) {
+      console.error('Error saving fee to localStorage:', e);
+    }
 
     // Show success message
     document.getElementById('overlayBox').innerHTML = "✅ Thank you! Your form has been submitted successfully.";

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Computer Fees</title>
+  <link rel="stylesheet" href="class.css">
+</head>
+<body>
+  <div class="background-animation"></div>
+  
+  <div class="login-container">
+    <div class="login-header">
+      <div class="login-icon">🔐</div>
+      <h2>Computer Fees Access</h2>
+      <p>Sign in to access Computer Fees Form</p>
+    </div>
+    
+    <form id="loginForm">
+      <div class="input-group">
+        <label for="username">
+          <span class="label-icon">👤</span>
+          Username
+        </label>
+        <input type="text" id="username" name="username" placeholder="Enter your username" autocomplete="username">
+      </div>
+
+      <div class="input-group">
+        <label for="password">
+          <span class="label-icon">🔒</span>
+          Password
+        </label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" autocomplete="current-password">
+      </div>
+
+      <button type="button" onclick="validateForm()" class="login-button">
+        <span>Login</span>
+        <span class="button-arrow">→</span>
+      </button>
+
+      <p class="error-message" id="errorMessage"></p>
+    </form>
+  </div>
+
+  <script>
+    function validateForm(){
+      var name = document.getElementById("username").value;
+      var password = document.getElementById("password").value;
+      var errorMessage = document.getElementById("errorMessage");
+
+      // Clear previous error
+      errorMessage.textContent = "";
+      errorMessage.style.display = "none";
+
+      if(name == "admin" && password == "Raza123"){
+        // Show success feedback
+        document.querySelector('.login-button').classList.add('success');
+        setTimeout(function(){
+          window.location.assign("login.html");
+        }, 500);
+      }
+      else{
+        // Show error message
+        errorMessage.textContent = "Invalid username or password. Please try again.";
+        errorMessage.style.display = "block";
+        
+        // Add shake animation
+        document.querySelector('.login-container').classList.add('shake');
+        setTimeout(function(){
+          document.querySelector('.login-container').classList.remove('shake');
+        }, 500);
+      }
+      return;
+    }
+
+    // Add Enter key support
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('password').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          validateForm();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+

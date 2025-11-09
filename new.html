@@ -188,5 +188,46 @@
     <button type="submit">Submit Admission</button>
   </form>
 
+  <script>
+    document.querySelector('.admission-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Get form data
+      const admissionData = {
+        studentName: document.getElementById('name').value,
+        fatherName: document.getElementById('fatherName').value,
+        date: document.getElementById('date').value,
+        admissionFees: document.getElementById('admissionFees').value,
+        totalFees: document.getElementById('totalFees').value,
+        phone: document.getElementById('phone').value,
+        timestamp: Date.now()
+      };
+      
+      // Get existing admissions from localStorage
+      let admissions = JSON.parse(localStorage.getItem('admissions') || '[]');
+      admissions.unshift(admissionData);
+      
+      // Keep only last 100 admissions
+      if (admissions.length > 100) {
+        admissions = admissions.slice(0, 100);
+      }
+      
+      // Save to localStorage
+      try {
+        localStorage.setItem('admissions', JSON.stringify(admissions));
+        console.log('Admission saved successfully. Total admissions:', admissions.length);
+      } catch(e) {
+        console.error('Error saving admission to localStorage:', e);
+        alert('⚠️ Error saving data. Please check browser settings.');
+        return;
+      }
+      
+      // Show success message
+      alert('✅ Admission submitted successfully!');
+      
+      // Reset form
+      this.reset();
+    });
+  </script>
 </body>
 </html>

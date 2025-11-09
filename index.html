@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AUJ Fees Management System</title>
+  <title>Login - AUJ Fees Management System</title>
   <style>
     * {
       margin: 0;
@@ -84,29 +84,19 @@
       min-height: calc(100vh - 150px);
     }
 
-    /* ---- Box Design ---- */
-    .box {
+    .login-container {
       background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(10px);
+      padding: 40px;
       border-radius: 20px;
       box-shadow: 0 20px 60px rgba(0,0,0,0.3);
       width: 100%;
-      max-width: 400px;
-      padding: 40px;
+      max-width: 420px;
       text-align: center;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      position: relative;
-      overflow: hidden;
       animation: fadeInUp 0.6s ease-out;
-    }
-
-    .box:nth-child(1) {
-      animation-delay: 0.1s;
-    }
-
-    .box:nth-child(2) {
-      animation-delay: 0.2s;
+      position: relative;
+      z-index: 1;
+      border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
     @keyframes fadeInUp {
@@ -120,84 +110,106 @@
       }
     }
 
-    .box::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-      transition: left 0.5s;
+    .login-header {
+      margin-bottom: 30px;
     }
 
-    .box:hover::before {
-      left: 100%;
-    }
-
-    .box:hover {
-      transform: translateY(-10px) scale(1.02);
-      box-shadow: 0 30px 80px rgba(0,0,0,0.4);
-    }
-
-    .box-icon {
-      font-size: 64px;
-      margin-bottom: 20px;
-      display: block;
-      animation: float 3s ease-in-out infinite;
-    }
-
-    .box:nth-child(1) .box-icon {
-      animation-delay: 0s;
-    }
-
-    .box:nth-child(2) .box-icon {
-      animation-delay: 0.5s;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-    }
-
-    .box h2 {
-      color: #333;
+    .login-icon {
+      font-size: 48px;
       margin-bottom: 15px;
-      font-size: 24px;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    .login-container h2 {
+      color: #333;
+      font-size: 28px;
       font-weight: 700;
+      margin-bottom: 8px;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
 
-    .box p {
+    .login-header p {
       color: #666;
-      margin-bottom: 30px;
-      font-size: 15px;
-      line-height: 1.6;
+      font-size: 14px;
+      margin-top: 5px;
     }
 
-    .btn {
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .input-group {
+      text-align: left;
+    }
+
+    label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #333;
+      font-size: 14px;
+    }
+
+    .label-icon {
+      font-size: 16px;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid #e0e0e0;
+      border-radius: 12px;
+      font-size: 15px;
+      transition: all 0.3s ease;
+      background: #f8f9fa;
+      font-family: inherit;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #667eea;
+      background: #fff;
+      box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+      transform: translateY(-2px);
+    }
+
+    input::placeholder {
+      color: #999;
+    }
+
+    .login-button {
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
+      color: #fff;
+      padding: 16px;
       border: none;
-      padding: 14px 32px;
       border-radius: 12px;
       cursor: pointer;
       font-size: 16px;
       font-weight: 600;
       transition: all 0.3s ease;
-      display: inline-flex;
+      margin-top: 10px;
+      display: flex;
       align-items: center;
-      gap: 8px;
+      justify-content: center;
+      gap: 10px;
       box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
       position: relative;
       overflow: hidden;
-      text-decoration: none;
     }
 
-    .btn::before {
+    .login-button::before {
       content: '';
       position: absolute;
       top: 50%;
@@ -210,38 +222,63 @@
       transition: width 0.6s, height 0.6s;
     }
 
-    .btn:hover::before {
+    .login-button:hover::before {
       width: 300px;
       height: 300px;
     }
 
-    .btn:hover {
+    .login-button:hover {
       transform: translateY(-2px);
       box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
     }
 
-    .btn:active {
+    .login-button:active {
       transform: translateY(0);
     }
 
-    .btn span {
-      position: relative;
-      z-index: 1;
+    .login-button.success {
+      background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
     }
 
-    .btn-arrow {
-      position: relative;
-      z-index: 1;
+    .button-arrow {
       transition: transform 0.3s ease;
     }
 
-    .btn:hover .btn-arrow {
+    .login-button:hover .button-arrow {
       transform: translateX(5px);
     }
 
-    a {
-      text-decoration: none;
-      color: inherit;
+    .error-message {
+      color: #e74c3c;
+      margin-top: 10px;
+      font-size: 14px;
+      padding: 12px;
+      background: #fee;
+      border-radius: 8px;
+      border-left: 4px solid #e74c3c;
+      display: none;
+      animation: slideDown 0.3s ease;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+      20%, 40%, 60%, 80% { transform: translateX(10px); }
+    }
+
+    .login-container.shake {
+      animation: shake 0.5s;
     }
 
     @media (max-width: 768px) {
@@ -259,17 +296,18 @@
         padding: 20px;
       }
 
-      .box {
-        padding: 30px 25px;
-        max-width: 100%;
+      .login-container {
+        padding: 30px 20px;
+        margin: 20px;
+        border-radius: 16px;
       }
 
-      .box-icon {
-        font-size: 48px;
+      .login-container h2 {
+        font-size: 24px;
       }
 
-      .box h2 {
-        font-size: 20px;
+      .login-icon {
+        font-size: 40px;
       }
     }
 
@@ -278,7 +316,7 @@
         font-size: 20px;
       }
 
-      .box {
+      .login-container {
         padding: 25px 20px;
       }
     }
@@ -288,35 +326,85 @@
   <div class="background-animation"></div>
   
   <header>
-    <h1>AUJ Fees Management System</h1>
+    <h1>AUJ Management System</h1>
     <div class="menu-toggle" id="mobile-menu">&#9776;</div>
   </header>
 
   <div class="container">
-    <div class="box">
-      <span class="box-icon">🏫</span>
-      <h2>School Fees System Form</h2>
-      <p>Manage and record school fee details efficiently with our comprehensive form system.</p>
-      <a href="school.html">
-        <button class="btn">
-          <span>Open Form</span>
-          <span class="btn-arrow">→</span>
-        </button>
-      </a>
-    </div>
+    <div class="login-container">
+      <div class="login-header">
+        <div class="login-icon">🔐</div>
+        <h2>Welcome Back</h2>
+        <p>Sign in to access AUJ School Management System</p>
+      </div>
+      
+      <form id="loginForm">
+        <div class="input-group">
+          <label for="username">
+            <span class="label-icon">👤</span>
+            Username
+          </label>
+          <input type="text" id="username" name="username" placeholder="Enter your username" autocomplete="username">
+        </div>
 
-    <div class="box">
-      <span class="box-icon">💻</span>
-      <h2>Computer System Form</h2>
-      <p>Fill in details for computer course enrollments and fee submissions.</p>
-      <a href="main.html">
-        <button class="btn">
-          <span>Open Form</span>
-          <span class="btn-arrow">→</span>
+        <div class="input-group">
+          <label for="password">
+            <span class="label-icon">🔒</span>
+            Password
+          </label>
+          <input type="password" id="password" name="password" placeholder="Enter your password" autocomplete="current-password">
+        </div>
+
+        <button type="button" onclick="validateForm()" class="login-button">
+          <span>Login</span>
+          <span class="button-arrow">→</span>
         </button>
-      </a>
+
+        <p class="error-message" id="errorMessage"></p>
+      </form>
     </div>
   </div>
+
+  <script>
+    function validateForm(){
+      var name = document.getElementById("username").value;
+      var password = document.getElementById("password").value;
+      var errorMessage = document.getElementById("errorMessage");
+
+      // Clear previous error
+      errorMessage.textContent = "";
+      errorMessage.style.display = "none";
+
+      if(name == "admin" && password == "Raza123"){
+        // Show success feedback
+        document.querySelector('.login-button').classList.add('success');
+        setTimeout(function(){
+          window.location.assign("dashboard.html");
+        }, 500);
+      }
+      else{
+        // Show error message
+        errorMessage.textContent = "Invalid username or password. Please try again.";
+        errorMessage.style.display = "block";
+        
+        // Add shake animation
+        document.querySelector('.login-container').classList.add('shake');
+        setTimeout(function(){
+          document.querySelector('.login-container').classList.remove('shake');
+        }, 500);
+      }
+      return;
+    }
+
+    // Add Enter key support
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('password').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          validateForm();
+        }
+      });
+    });
+  </script>
 </body>
 </html>
 
