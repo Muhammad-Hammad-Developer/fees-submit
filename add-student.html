@@ -200,6 +200,43 @@
             margin-top: 10px;
         }
 
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(5px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        #overlayBox {
+            background: white;
+            padding: 40px 50px;
+            border-radius: 20px;
+            text-align: center;
+            font-family: inherit;
+            font-size: 18px;
+            color: #333;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: fadeIn 0.4s ease;
+            max-width: 400px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .blurred {
+            filter: blur(5px);
+            pointer-events: none;
+        }
+
         @media (max-width: 768px) {
             header {
                 flex-direction: column;
@@ -234,32 +271,32 @@
     </header>
 
     <div class="form-container">
-        <form id="studentForm">
+        <form id="submitForm">
             <h2>➕ Add Student</h2>
             
             <div class="form-group">
                 <label for="studentName">👤 Student Name</label>
-                <input type="text" id="studentName" name="studentName" required>
+                <input type="text" id="studentName" name="StudentName" required>
             </div>
 
             <div class="form-group">
                 <label for="fatherName">👨‍👦 Father's Name</label>
-                <input type="text" id="fatherName" name="fatherName" required>
+                <input type="text" id="fatherName" name="FatherName" required>
             </div>
 
             <div class="form-group">
-                <label for="dateOfBirth">📅 Date of Birth</label>
-                <input type="date" id="dateOfBirth" name="dateOfBirth" required>
+                <label for="grNumber">📅 GR NUMBER</label>
+                <input type="number" id="grNumber" name="GRNumber" required>
             </div>
 
             <div class="form-group">
                 <label for="phone">📱 Phone Number</label>
-                <input type="tel" id="phone" name="phone" required>
+                <input type="tel" id="phone" name="PhoneNumber" required>
             </div>
 
             <div class="form-group full-width">
                 <label for="class">📚 Class</label>
-                <select id="class" name="class" required>
+                <select id="class" name="Class" required>
                     <option value="">Select a class</option>
                     <option>Play Group</option>
                     <option>Mont</option>
@@ -273,78 +310,24 @@
                     <option>6th</option>
                     <option>7th</option>
                     <option>8th</option>
-                    <option>Ms Office</option>
-                    <option>Web Development</option>
-                    <option>Graphics design</option>
                 </select>
             </div>
 
             <div class="form-group">
                 <label for="address">🏠 Address</label>
-                <input type="text" id="address" name="address" required>
+                <input type="text" id="address" name="Address" required>
             </div>
 
             <div class="form-group">
                 <label for="email">📧 Email (Optional)</label>
-                <input type="email" id="email" name="email">
+                <input type="email" id="email" name="Email">
             </div>
 
-            <button type="submit">Add Student</button>
-            
-            <div class="success-message" id="successMessage">
-                ✅ Student added successfully!
-            </div>
+            <button type="submit" id="submitButton">Add Student</button>
         </form>
     </div>
 
-    <script>
-        document.getElementById('studentForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const studentData = {
-                name: document.getElementById('studentName').value,
-                fatherName: document.getElementById('fatherName').value,
-                dateOfBirth: document.getElementById('dateOfBirth').value,
-                phone: document.getElementById('phone').value,
-                class: document.getElementById('class').value,
-                address: document.getElementById('address').value,
-                email: document.getElementById('email').value,
-                addedDate: new Date().toISOString(),
-                timestamp: Date.now()
-            };
-            
-            // Get existing students from localStorage
-            let students = JSON.parse(localStorage.getItem('students') || '[]');
-            
-            // Add new student
-            students.unshift(studentData);
-            
-            // Keep only last 50 students
-            if (students.length > 50) {
-                students = students.slice(0, 50);
-            }
-            
-            // Save to localStorage
-            try {
-                localStorage.setItem('students', JSON.stringify(students));
-                console.log('Student saved successfully. Total students:', students.length);
-            } catch(e) {
-                console.error('Error saving to localStorage:', e);
-                alert('⚠️ Error saving data. Please check browser settings.');
-                return;
-            }
-            
-            // Show success message
-            document.getElementById('successMessage').style.display = 'block';
-            
-            // Reset form after 2 seconds
-            setTimeout(function() {
-                document.getElementById('studentForm').reset();
-                document.getElementById('successMessage').style.display = 'none';
-            }, 2000);
-        });
-    </script>
+    <script src="student.js"></script>
 </body>
 </html>
 

@@ -338,7 +338,7 @@
                             <th>#</th>
                             <th>Student Name</th>
                             <th>Father's Name</th>
-                            <th>Date of Birth</th>
+                            <th>GR Number</th>
                             <th>Class</th>
                             <th>Phone</th>
                             <th>Email</th>
@@ -352,14 +352,14 @@
             
             students.forEach((student, index) => {
                 const addedDate = formatDate(student.addedDate);
-                const dob = formatDate(student.dateOfBirth);
+                const grNumber = student.grNumber || student.dateOfBirth || 'N/A';
                 
                 tableHTML += `
                     <tr>
                         <td>${index + 1}</td>
                         <td><strong>${student.name || 'N/A'}</strong></td>
                         <td>${student.fatherName || 'N/A'}</td>
-                        <td>${dob}</td>
+                        <td>${grNumber}</td>
                         <td><span class="student-badge">${student.class || 'N/A'}</span></td>
                         <td>${student.phone || 'N/A'}</td>
                         <td>${student.email || 'N/A'}</td>
